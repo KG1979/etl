@@ -436,12 +436,8 @@ public class ETLMapper extends
 
 					String valueToBeReplaced = padZeroesAtLeftInKeyColumnValue(headerValueMap.get(header));
 					
-//					valueToBeReplaced = valueToBeReplaced+"-"+ reverseTimestamp;
-					
 					inputRowKeyFormat = inputRowKeyFormat.replace("<" + header
 							+ ">", valueToBeReplaced);//Updated here
-					
-					//inputRowKeyFormat = inputRowKeyFormat.replace("<" + header + ">", headerValueMap.get(header));
 					
 				}
 
@@ -464,14 +460,12 @@ public class ETLMapper extends
 							.format(new Date(status.getModificationTime()));
 					
 					String valueToBeReplaced = padZeroesAtLeftInKeyColumnValue(headerValueMap.get(header));
-					
-					valueToBeReplaced = valueToBeReplaced+"-"+timeStamp;
 
 					inputRowKeyFormat = rowkeyFormat
 							.replace(
 									"<" + header + "["
 											+ getFormat(rowkeyFormat, header)
-											+ "]>", valueToBeReplaced);
+											+ "]>", timeStamp);
 					
 					/*inputRowKeyFormat = rowkeyFormat
 							.replace(
@@ -516,10 +510,10 @@ public class ETLMapper extends
 							+ getFormat(rowkeyFormat, header) + "]>",
 							reverseTimestamp + "");
 					
-					String[] temp = inputRowKeyFormat.split(".");
+					/*String[] temp = inputRowKeyFormat.split(".");
 					String valueToBeReplaced = padZeroesAtLeftInKeyColumnValue(temp[0]);
 					
-					inputRowKeyFormat = valueToBeReplaced + "."+ temp[1];
+					inputRowKeyFormat = valueToBeReplaced + "."+ temp[1];*/
 					
 
 				}
@@ -562,12 +556,12 @@ public class ETLMapper extends
 						
 						String valueToBeReplaced = padZeroesAtLeftInKeyColumnValue(headerValueMap.get(header));
 						
-						valueToBeReplaced = valueToBeReplaced+"-"+timeStamp;
+//						valueToBeReplaced = valueToBeReplaced+"-"+timeStamp;
 						
 						inputRowKeyFormat = inputRowKeyFormat.replace(
 								"<" + header + "["
 										+ getFormat(inputRowKeyFormat, header)
-										+ "]>", valueToBeReplaced);
+										+ "]>", timeStamp);
 						
 						/*inputRowKeyFormat = inputRowKeyFormat.replace(
 								"<" + header + "["
@@ -619,6 +613,7 @@ public class ETLMapper extends
 								reverseTimestamp + "");
 						
 						String[] temp = inputRowKeyFormat.split(".");
+						
 						String valueToBeReplaced = padZeroesAtLeftInKeyColumnValue(temp[0]);
 						
 						inputRowKeyFormat = valueToBeReplaced + "."+ temp[1];
